@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Comparison Atlant.js and Redux.js presentation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=792, user-scalable=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="list">
+<header class="caption">
+    <h1>Comparison Atlant.js and Redux.js</h1>
+</header>
+
+<section class="slide shout">
+    <div style="text-align: center">
+        <h2 style="font-size: 350%">Compare Atlant.js and Redux.js</h2>
+        <div style="font-size: 150%; font-weight: bold; text-transform: uppercase;">frumat<span style="color:#16f4cc;">i</span>c</div>
+        <div style="margin:300px 0 0;">CustomButtons</div>
+    </div>
+</section>
+
+<section class="slide">
+    <div>
+        <h2>Stores</h2>
+        <b>Atlant.js</b>
+        <p>Many stores</p>
+        <b>Redux.js</b>
+        <p>One state</p>
+    </div>
+</section>
+
+<section class="slide">
+    <div>
+        <h2>Actions</h2>
+        <pre>
+            <code>.updater('name').with( _ => {data: _.data} )</code>
+            <code>function nameAction(data){
+    return {
+        type: 'NAME',
+        data
+    }
+}</code>
+		</pre>
+    </div>
+</section>
+
+<section class="slide">
+    <div>
+        <h2>Reducers</h2>
+        <pre>
+            <code>.update('name', (store, data) => {
+    store.data = data;
+    return store;
+})</code>
+            <code>function nameReducer(state, action) {
+    state.data = action.data;
+    return state;
+}</code>
+		</pre>
+    </div>
+</section>
+
+<section class="slide">
+    <div>
+        <h2>Transition Actions => Reducers</h2>
+        <pre>
+            <code>One .updater() to <mark>many</mark> .update()</code>
+			<code>One action to <mark>one</mark> reducer</code>
+		</pre>
+    </div>
+</section>
+
+<section class="slide">
+    <div>
+        <h2>Routing</h2>
+        <pre>
+            <code>Built-in FRP routing + logic</code>
+			<code>No self routing mechanic</code>
+		</pre>
+    </div>
+</section>
+
+<section class="slide">
+    <div>
+        <h2>Back button</h2>
+        <pre>
+            <code>Built-in back button mechanic</code>
+			<code>No self back button mechanic</code>
+		</pre>
+    </div>
+</section>
+
+<section class="slide">
+    <div>
+        <h2>Middleware</h2>
+        <pre>
+            <code>No way to connect middleware</code>
+			<code>May be connected middleware for asynchronous action</code>
+		</pre>
+    </div>
+</section>
+
+<section class="slide">
+    <div>
+        <h2>Rehydrate</h2>
+        <pre>
+            <code>No way to add rehydrate mechanic</code>
+			<code>May be coded rehydrate mechanic</code>
+		</pre>
+    </div>
+</section>
+
+<section class="slide">
+    <div>
+        <h2>Redux.js: ‘smart’ and ‘dumb’ components to flow actions</h2>
+        <pre>
+            <code style="font-size: 45%; line-height: 1.4;">import React                  from 'react';
+import TodosView              from 'components/TodosView';
+import TodosForm              from 'components/TodosForm';
+import { bindActionCreators } from 'redux';
+import * as TodoActions       from 'actions/TodoActions';
+import { connect }            from 'react-redux';
+
+@connect(state => ({ todos: state.todos }))
+export default class Home extends React.Component {
+    render() {
+        const { todos, dispatch } = this.props;
+        return (
+            &lt;div id="todo-list"&gt;
+                &lt;TodosView todos={todos}
+                   {...bindActionCreators(TodoActions, dispatch)} /&gt;
+                &lt;TodosForm
+                    {...bindActionCreators(TodoActions, dispatch)} /&gt;
+                &lt;!-- ‘Dumb’ TodosView and TodosForm take all actions in props ---&gt;
+            &lt;/div&gt;
+        );
+    }
+}
+            </code>
+		</pre>
+    </div>
+</section>
+
+<section class="slide">
+    <div>
+        <h2>Atlant.js: ‘session’ to flow to all components who require actions</h2>
+        <pre>
+            <code style="font-size: 45%; line-height: 1.4;">module.exports = function( session ){
+    const getFeaturedMoments = session.atlant.streams.get('getFeaturedMoments');
+
+    ...
+    &lt;DiscoverMoments moreItemsAction={getFeaturedMoments} /&gt;
+    &lt;!-- DiscoverMoments take one action in props ---&gt;
+    ...
+}
+            </code>
+		</pre>
+    </div>
+</section>
+
+<section class="slide cover">
+    <div>
+        <h2 style="margin-top: 160px; text-align: center; color: #fff; text-shadow: 4px 4px 8px #000;">СПАСИБО!</h2>
+        <p style="text-align: center; color: #fff; text-shadow: 4px 4px 8px #000;">Заглядывайте:
+            <a href="https://github.com/CustomButtons" style="color: #fff">github.com/CustomButtons</a>
+        </p>
+        <img src="pictures/doge-bg.jpg" width="100%">
+    </div>
+</section>
+<div class="progress">
+    <div></div>
+</div>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/attrchange.js"></script>
+<script src="js/main.js"></script>
+<script src="shower/shower.min.js"></script>
+</body>
+</html>
