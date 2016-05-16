@@ -35,7 +35,7 @@
     <div>
         <h2>Actions</h2>
         <pre>
-            <code>.updater('name').with( _ => {data: _.data} )</code>
+            <code>.update('name').with( _ => {data: _.data} )</code>
             <code>function nameAction(data){
     return {
         type: 'NAME',
@@ -50,7 +50,7 @@
     <div>
         <h2>Reducers</h2>
         <pre>
-            <code>.update('name', (store, data) => {
+            <code>.updater('name', (store, data) => {
     store.data = data;
     return store;
 })</code>
@@ -66,7 +66,7 @@
     <div>
         <h2>Transition Actions => Reducers</h2>
         <pre>
-            <code>One .updater() to <mark>many</mark> .update()</code>
+            <code>One .update() to <mark>many</mark> .updater()</code>
 			<code>One action to <mark>one</mark> reducer</code>
 		</pre>
     </div>
