@@ -106,8 +106,19 @@
     <div>
         <h2>Rehydrate</h2>
         <pre>
-            <code>No way to add rehydrate mechanic</code>
-			<code>May be coded rehydrate mechanic</code>
+            <code style="font-size: 85%; line-height: 1.4;">May be coded rehydrate mechanic
+let initialState = window.__INITIAL_STATE__;
+//{result: 100500}
+atlant
+    .store('Memory')
+        .constructor(() => initialState)</code>
+			<code style="font-size: 85%; line-height: 1.4;">May be coded rehydrate mechanic
+import { createStore, combineReducers } from 'redux';
+    import * as reducers                    from 'reducers';
+    let initialState = window.__INITIAL_STATE__;
+    //{memory: {result: 100500}}
+    const reducer = combineReducers(reducers);
+    const store   = createStore(reducer, initialState);</code>
 		</pre>
     </div>
 </section>
